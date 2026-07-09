@@ -199,7 +199,7 @@ export default function AboutPage({ photoUrl, bio, linkedinUrl }: Props) {
           <Name>Teron Russell</Name>
           <Role>Product Designer · Chicago, IL</Role>
 
-          {bio?.length > 0 && <Bio>{renderBio(bio)}</Bio>}
+          {bio && bio.length > 0 && <Bio>{renderBio(bio)}</Bio>}
 
           {linkedinUrl && (
             <LinkedInLink href={linkedinUrl} target="_blank" rel="noopener noreferrer">
