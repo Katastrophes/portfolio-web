@@ -7,7 +7,7 @@ import PasswordGate from '../../components/PasswordGate'
 
 async function getCaseStudy(slug: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/case-studies?filters[slug][$eq]=${slug}&populate[heroImage]=true&populate[content][on][blocks.text-block][populate]=*&populate[content][on][blocks.image-block][populate]=*&populate[content][on][blocks.multi-image-block][populate][tabs][populate]=*`,
+    `${process.env.STRAPI_API_URL}/api/case-studies?filters[slug][$eq]=${slug}&populate[heroImage]=true&populate[content][on][blocks.text-block][populate]=*&populate[content][on][blocks.image-block][populate]=*&populate[content][on][blocks.multi-image-block][populate][tabs][populate]=*`,
     { cache: 'no-store' }
   )
   if (!res.ok) return null
@@ -79,7 +79,7 @@ function renderBlocks(blocks: any[]) {
 
     if (block.__component === 'blocks.image-block') {
       if (!block.image?.url) return null
-      const imageUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${block.image.url}`
+      const imageUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}${block.image.url}`
       return (
         <figure key={i} style={{ margin: '2rem 0' }}>
           <LightboxImage src={imageUrl} alt={block.caption || ''} style={{ width: '100%', borderRadius: '8px', display: 'block' }} />
@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: study.title,
       description: study.description || `A case study by Teron Russell — ${study.title}`,
       ...(study.heroImage?.url && {
-        images: [`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${study.heroImage.url}`],
+        images: [`${process.env.NEXT_PUBLIC_STRAPI_URL}${study.heroImage.url}`],
       }),
     },
   }
@@ -147,7 +147,7 @@ export default async function CaseStudyPage({
   }
 
   const blocks = study.content || []
-  const heroImageUrl = study.heroImage?.url ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${study.heroImage.url}` : null
+  const heroImageUrl = study.heroImage?.url ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${study.heroImage.url}` : null
 
   const anchors = blocks
     .filter((b: any) => b.__component === 'blocks.text-block')

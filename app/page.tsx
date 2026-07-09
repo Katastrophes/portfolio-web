@@ -4,7 +4,7 @@ export default async function Home() {
   let caseStudies = []
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/case-studies?populate=*&sort=order:asc`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/api/case-studies?populate=*&sort=order:asc`, {
   cache: 'no-store',
 })
 

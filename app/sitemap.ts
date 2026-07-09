@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/case-studies?fields[0]=slug&fields[1]=updatedAt&fields[2]=isLocked&sort=order:asc`,
+      `${process.env.STRAPI_API_URL}/api/case-studies?fields[0]=slug&fields[1]=updatedAt&fields[2]=isLocked&sort=order:asc`,
       { cache: 'no-store' }
     )
 

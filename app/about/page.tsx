@@ -4,7 +4,7 @@ export default async function About() {
   let data = null
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/about?populate=*`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/api/about?populate=*`, {
   cache: 'no-store',
 })
     if (res.ok) {
@@ -15,7 +15,7 @@ export default async function About() {
     console.error('Error fetching about data:', error)
   }
 
-  const photoUrl = data?.photo?.url ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${data.photo.url}` : null
+  const photoUrl = data?.photo?.url ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${data.photo.url}` : null
 
   return (
     <AboutPage
