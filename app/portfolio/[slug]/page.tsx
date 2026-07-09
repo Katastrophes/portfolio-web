@@ -1,7 +1,9 @@
+import { cookies } from 'next/headers'
 import CaseStudyLayout from '../../components/CaseStudyLayout'
 import SliderComponent from '../../components/SliderComponent'
 import TabImageBlock from '../../components/TabImageBlock'
 import LightboxImage from '../../components/LightboxImage'
+import PasswordGate from '../../components/PasswordGate'
 
 async function getCaseStudy(slug: string) {
   const res = await fetch(
@@ -112,6 +114,14 @@ export default async function CaseStudyPage({
 
   if (!study) {
     return <div style={{ padding: '2rem' }}>Case study not found</div>
+  }
+
+  if (study.isLocked) {
+    const cookieStore = await cookies()
+    const unlocked = cookieStore.get(`unlock_${slug}`)
+    if (!unlocked) {
+      return <PasswordGate slug={slug} title={study.title} />
+    }
   }
 
   const blocks = study.content || []
