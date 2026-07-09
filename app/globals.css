@@ -1,26 +1,31 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..146,100..700;1,9..146,100..700&family=DM+Serif+Display:ital@0;1&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg:             #0d0d0d;
+  --color-text:           #ffffff;
+  --color-text-secondary: #ffffffd9;
+  --color-text-muted:     #ffffffb3;
+  --color-text-subtle:    #ffffff99;
+  --color-border:         #ffffff26;
+  --color-border-tag:     #ffffff66;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  background-image: radial-gradient(circle, #222222 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
