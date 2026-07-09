@@ -77,7 +77,7 @@ function renderBlocks(blocks: any[]) {
 
     if (block.__component === 'blocks.image-block') {
       if (!block.image?.url) return null
-      const imageUrl = `http://localhost:1337${block.image.url}`
+      const imageUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${block.image.url}`
       return (
         <figure key={i} style={{ margin: '2rem 0' }}>
           <LightboxImage src={imageUrl} alt={block.caption || ''} style={{ width: '100%', borderRadius: '8px', display: 'block' }} />
@@ -115,7 +115,7 @@ export default async function CaseStudyPage({
   }
 
   const blocks = study.content || []
-  const heroImageUrl = study.heroImage?.url ? `http://localhost:1337${study.heroImage.url}` : null
+  const heroImageUrl = study.heroImage?.url ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${study.heroImage.url}` : null
 
   const anchors = blocks
     .filter((b: any) => b.__component === 'blocks.text-block')

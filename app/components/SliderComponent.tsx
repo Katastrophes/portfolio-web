@@ -64,7 +64,7 @@ export default function SliderComponent({ slides }: { slides: Slide[] }) {
   return (
     <Wrapper>
       <SlideImg
-        src={`http://localhost:1337${slide.image.url}`}
+        src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${slide.image.url}`}
         alt={slide.caption || `Slide ${current + 1}`}
       />
       {slide.caption && <SlideCaption>{slide.caption}</SlideCaption>}

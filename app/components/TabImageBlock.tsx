@@ -81,7 +81,7 @@ export default function TabImageBlock({ tabs, caption }: Props) {
       {current.image && (
         <ImageWrap>
           <Img
-            src={`http://localhost:1337${current.image.url}`}
+            src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${current.image.url}`}
             alt={current.image.alternativeText || current.label}
           />
         </ImageWrap>

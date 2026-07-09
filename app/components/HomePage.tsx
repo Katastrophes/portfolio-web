@@ -318,7 +318,7 @@ export default function HomePage({ caseStudies }: { caseStudies: CaseStudy[] }) 
         {allStudies.map((study, i) => {
           const bg = study.cardColor || CARD_COLORS[i % CARD_COLORS.length]
           const imageUrl = study.heroImage?.url
-            ? `http://localhost:1337${study.heroImage.url}`
+            ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${study.heroImage.url}`
             : null
 
           return (
