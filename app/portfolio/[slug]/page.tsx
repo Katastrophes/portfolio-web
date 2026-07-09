@@ -5,7 +5,7 @@ import LightboxImage from '../../components/LightboxImage'
 
 async function getCaseStudy(slug: string) {
   const res = await fetch(
-    `http://localhost:1337/api/case-studies?filters[slug][$eq]=${slug}&populate[heroImage]=true&populate[content][on][blocks.text-block][populate]=*&populate[content][on][blocks.image-block][populate]=*&populate[content][on][blocks.multi-image-block][populate][tabs][populate]=*`,
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/case-studies?filters[slug][$eq]=${slug}&populate[heroImage]=true&populate[content][on][blocks.text-block][populate]=*&populate[content][on][blocks.image-block][populate]=*&populate[content][on][blocks.multi-image-block][populate][tabs][populate]=*`,
     { cache: 'no-store' }
   )
   if (!res.ok) return null

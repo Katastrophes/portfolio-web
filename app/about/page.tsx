@@ -4,9 +4,9 @@ export default async function About() {
   let data = null
 
   try {
-    const res = await fetch('http://localhost:1337/api/about?populate=*', {
-      cache: 'no-store',
-    })
+    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/about?populate=*`, {
+  cache: 'no-store',
+})
     if (res.ok) {
       const json = await res.json()
       data = json.data || null
@@ -15,7 +15,7 @@ export default async function About() {
     console.error('Error fetching about data:', error)
   }
 
-  const photoUrl = data?.photo?.url ? `http://localhost:1337${data.photo.url}` : null
+  const photoUrl = data?.photo?.url ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${data.photo.url}` : null
 
   return (
     <AboutPage
