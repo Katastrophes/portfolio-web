@@ -104,6 +104,23 @@ function renderBlocks(blocks: any[]) {
   })
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const study = await getCaseStudy(slug)
+  if (!study || study.isLocked) return {}
+  return {
+    title: study.title,
+    description: study.description || `A case study by Teron Russell — ${study.title}`,
+    openGraph: {
+      title: study.title,
+      description: study.description || `A case study by Teron Russell — ${study.title}`,
+      ...(study.heroImage?.url && {
+        images: [`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${study.heroImage.url}`],
+      }),
+    },
+  }
+}
+
 export default async function CaseStudyPage({
   params,
 }: {
@@ -120,7 +137,12 @@ export default async function CaseStudyPage({
     const cookieStore = await cookies()
     const unlocked = cookieStore.get(`unlock_${slug}`)
     if (!unlocked) {
-      return <PasswordGate slug={slug} title={study.title} />
+      return (
+        <>
+          <meta name="robots" content="noindex, nofollow" />
+          <PasswordGate slug={slug} title={study.title} />
+        </>
+      )
     }
   }
 
