@@ -22,7 +22,7 @@ const NavBar = styled.nav`
 `
 
 const Logo = styled.div`
-  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-family: var(--font-dm-serif), serif;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.01em;
