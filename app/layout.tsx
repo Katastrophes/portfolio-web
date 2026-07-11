@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { DM_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import StyledComponentsRegistry from "./lib/registry";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -11,11 +11,9 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const dmSerifDisplay = DM_Serif_Display({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-dm-serif",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -42,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmSerifDisplay.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${inter.variable}`}>
       <body>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>

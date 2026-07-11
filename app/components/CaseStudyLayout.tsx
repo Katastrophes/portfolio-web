@@ -22,7 +22,7 @@ const NavBar = styled.nav`
 `
 
 const Logo = styled.div`
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -110,6 +110,10 @@ const Article = styled.article`
   & > *:first-child,
   & > div:first-child > *:first-child {
     margin-top: 0 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
   }
 `
 
